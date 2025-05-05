@@ -30,7 +30,7 @@ export default function Home() {
             <Typography variant="h6" fontWeight="bold" gutterBottom>How we build websites?</Typography>
             <Divider sx={{ mb: 2 }} />
             <Typography variant="subtitle1">Depending on the needs and requirements, your website
-              will be built and deployed using today's most up-to-date technologies.
+              will be built and deployed using today&apos;s most up-to-date technologies.
             </Typography>
           </Paper>
 
@@ -41,8 +41,8 @@ export default function Home() {
               Throughout my IT career so far, I have been working to become a better developer by working on 
               self-projects using different languages and frameworks in hopes of advancing my career. Nothing
               much has happened yet but that will not stop me. I plan to continue learning and writing code
-              even when the right opportunity finally comes knocking or until my fingers fall off. Anyways, here's 
-              a few of the projects I've worked on so far:
+              even when the right opportunity finally comes knocking or until my fingers fall off. Anyways, here&apos;s 
+              a few of the projects I&apos;ve worked on so far:
             </Typography>
 
             <Box mt={3} display="flex" flexDirection="column" alignItems="center" gap={3}>

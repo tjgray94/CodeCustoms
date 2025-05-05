@@ -65,7 +65,7 @@ export default function GetStartedPage() {
       <Navbar />
 
       <Container maxWidth="sm" sx={{ flex: 1, mt: 6, mb: 8 }}>
-        <Typography variant="h3" align="center" gutterBottom>Let's Get Started!!</Typography>
+        <Typography variant="h3" align="center" gutterBottom>Let&apos;s Get Started!!</Typography>
         <Typography variant="body1" align="center" sx={{ mb: 4 }}>
           But first, provide some details in order for us to gauge a deadline:
         </Typography>
