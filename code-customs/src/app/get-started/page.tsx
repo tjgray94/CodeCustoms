@@ -25,7 +25,7 @@ export default function GetStartedPage() {
     defaultValues: { businessType: "", pageRange: "" }
   });
   
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: FormInputs) => {
     try {
       const formData = new FormData();
 
