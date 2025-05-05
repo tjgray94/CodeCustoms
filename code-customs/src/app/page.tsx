@@ -66,7 +66,7 @@ export default function Home() {
         Shopify gets you started. We help you scale — with fully custom design, performance, and backend logic tailored to your business.
       </p>
     </section>
-    <p className="text-lg mb-8">No templates. No monthly app fees. Just clean, high-performing custom code.</p>
+    <p className="text-lg mb-8">No monthly app fees. Just clean, high-performing custom code.</p>
   </div> */}
     </Box>
   );
