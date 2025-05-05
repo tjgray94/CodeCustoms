@@ -6,10 +6,17 @@ import { Box, Button, Container, Stack, TextField, Typography } from "@mui/mater
 import { useForm } from "react-hook-form";
 import axios from "axios";
 
-export default function ContactPage() {
-  const { register, handleSubmit, reset, formState: { errors } } = useForm();
+type ContactFormInputs = {
+  name: string;
+  email: string;
+  phoneNo?: string;
+  description: string;
+};
 
-  const onSubmit = async (data: any) => {
+export default function ContactPage() {
+  const { register, handleSubmit, reset, formState: { errors } } = useForm<ContactFormInputs>();
+
+  const onSubmit = async (data: ContactFormInputs) => {
     try {
       const response = await axios.post("/api/inquiries", {
         ...data
