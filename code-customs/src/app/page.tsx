@@ -14,7 +14,7 @@ export default function Home() {
 
       <Container maxWidth="md" sx={{ mt: 4, mb: 6 }}>
         <Typography variant='h2' align="center" gutterBottom>CodeCustoms</Typography>
-        <Typography variant='h5' align="center" gutterBottom>"Boldly custom, no cookie-cutter"</Typography>
+        <Typography variant='h5' align="center" gutterBottom>{`"Boldly custom, no cookie-cutter"`}</Typography>
 
         <Stack spacing={4} mt={4}>
           <Paper elevation={6} sx={{ p: 3 }}>

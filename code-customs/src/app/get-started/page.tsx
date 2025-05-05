@@ -6,6 +6,7 @@ import { Box, Typography, Container, TextField, Button, Stack, MenuItem, InputLa
 import { useForm, Controller } from "react-hook-form";
 import axios from "axios";
 import { useState } from "react";
+import Image from "next/image";
 
 type FormInputs = {
   businessName: string;
@@ -112,7 +113,7 @@ export default function GetStartedPage() {
                 </Button>
               )}
             />
-            {logoPreview && <img src={logoPreview} alt="Logo Preview" style={{ width: 100, height: 100, objectFit: "cover", marginTop: 10 }} />}
+            {logoPreview && <Image src={logoPreview} alt="Logo Preview" style={{ width: 100, height: 100, objectFit: "cover", marginTop: 10 }} />}
 
             <Controller name="designUpload" control={control} defaultValue={undefined}
               render={({ field }) => (
@@ -135,7 +136,7 @@ export default function GetStartedPage() {
                 </Button>
               )}
             />
-            {sketchPreview && <img src={sketchPreview} alt="Sketch Preview" style={{ width: 100, height: 100, objectFit: "cover", marginTop: 10 }} />}
+            {sketchPreview && <Image src={sketchPreview} alt="Sketch Preview" style={{ width: 100, height: 100, objectFit: "cover", marginTop: 10 }} />}
 
             <TextField label="Color Scheme (optional)" fullWidth {...register("colorScheme")} />
 

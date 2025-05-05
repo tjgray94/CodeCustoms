@@ -11,10 +11,10 @@ export default function AboutPage() {
         <Typography variant="h3" gutterBottom align="center">How CodeCustoms Came About</Typography>
         
         <Typography variant="body1" sx={{ mt: 2, fontSize: "1.1rem", lineHeight: 1.8 }}>
-          I wanted to start a business but could never think of what. Then I asked myself, "What do I 
+          {`I wanted to start a business but could never think of what. Then I asked myself, "What do I 
           absolutely love to do besides playing COD all day?". The answer to that is "making websites" -  
-          which, I&apos;m sure, isn&apos;t a common response for someone with my background. As weird as it sounds, 
-          I actually enjoy building websites. 
+          which, I'm sure, isn't a common response for someone with my background. As weird as it sounds, 
+          I actually enjoy building websites.`} 
         </Typography>
           
         <Typography variant="body1" sx={{ mt: 2, fontSize: "1.1rem", lineHeight: 1.8 }}>
