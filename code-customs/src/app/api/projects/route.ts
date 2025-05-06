@@ -20,7 +20,7 @@ export async function POST(request: Request) {
       const arrayBuffer = await file.arrayBuffer();
       const buffer = Buffer.from(arrayBuffer);
 
-      const ext = ".png";
+      const ext = file.type.split("/")[1] || "png";
       const fileName = `${uuidv4()}${ext}`;
       const filePath = `uploads/${fileName}`;
 
@@ -33,9 +33,8 @@ export async function POST(request: Request) {
         return null;
       }
 
-      const { data } = supabase.storage.from("project-assets").getPublicUrl(filePath);
-  
-      return data.publicUrl;
+      const { data: publicUrlData } = supabase.storage.from("project-assets").getPublicUrl(filePath);
+      return publicUrlData?.publicUrl || null;
     }
 
     const logoPath = await saveFile(logoFile);
