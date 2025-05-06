@@ -19,21 +19,21 @@ export async function POST(request: Request) {
       
       const arrayBuffer = await file.arrayBuffer();
       const buffer = Buffer.from(arrayBuffer);
-
-      const ext = file.type.split("/")[1] || "png";
+      const ext = ".png";
       const fileName = `${uuidv4()}${ext}`;
-      const filePath = `uploads/${fileName}`;
 
-      const { error } = await supabase.storage.from("projects").upload(filePath, buffer, {
-        contentType: file.type,
+      console.log("Uploading file with type:", file.type);
+
+      const { error: uploadError, data: uploadData } = await supabase.storage.from("projects").upload(fileName, buffer, {
+        contentType: file.type || "image/png",
       });
 
-      if (error) {
-        console.error("Supabase upload error:", error.message);
+      if (uploadError) {
+        console.error("Supabase upload error:", uploadError.message);
         return null;
       }
 
-      const { data: publicUrlData } = supabase.storage.from("projects").getPublicUrl(filePath);
+      const { data: publicUrlData } = supabase.storage.from("projects").getPublicUrl(fileName);
       return publicUrlData?.publicUrl || null;
     }
 
