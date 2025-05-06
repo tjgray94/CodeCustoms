@@ -1,10 +1,11 @@
 import { NextResponse } from "next/server";
 import { BusinessType, PageRange, PrismaClient } from "@/generated/prisma";
-import { writeFile, mkdir } from "fs/promises";
-import path from "path";
 import { v4 as uuidv4 } from "uuid";
+import { createClient } from "@supabase/supabase-js";
 
 const prisma = new PrismaClient();
+
+const supabase = createClient(process.env.SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!);
 
 export async function POST(request: Request) {
   try {
@@ -19,15 +20,22 @@ export async function POST(request: Request) {
       const arrayBuffer = await file.arrayBuffer();
       const buffer = Buffer.from(arrayBuffer);
 
-      const uploadDir = path.join(process.cwd(), "public", "uploads");
-      await mkdir(uploadDir, { recursive: true });
-
       const ext = ".png";
       const fileName = `${uuidv4()}${ext}`;
-      const filePath = path.join(uploadDir, fileName);
-      
-      await writeFile(filePath, buffer);
-      return `/uploads/${fileName}`;
+      const filePath = `uploads/${fileName}`;
+
+      const { error } = await supabase.storage.from("project-assets").upload(filePath, buffer, {
+        contentType: file.type,
+      });
+
+      if (error) {
+        console.error("Supabase upload error:", error.message);
+        return null;
+      }
+
+      const { data } = supabase.storage.from("project-assets").getPublicUrl(filePath);
+  
+      return data.publicUrl;
     }
 
     const logoPath = await saveFile(logoFile);
