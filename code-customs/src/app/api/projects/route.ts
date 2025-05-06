@@ -33,6 +33,8 @@ export async function POST(request: Request) {
         return null;
       }
 
+      console.log("Upload success:", uploadData);
+
       const { data: publicUrlData } = supabase.storage.from("projects").getPublicUrl(fileName);
       return publicUrlData?.publicUrl || null;
     }
