@@ -1,5 +1,5 @@
 # CodeCustoms
-CodeCustoms is a custom website development service built to offer limitless design and functionality--crafted entirely with code. Whether you're a business, creative, or entrepreneur, CodeCustoms turns your unique vision into a tailored online experience.
+CodeCustoms is a custom website development service built to offer limitless design and functionality--crafted entirely with code. Whether you're a business, creative, or entrepreneur, CodeCustoms turns your unique vision into a tailored online experience. This website has been deployed using Vercel and can be seen [here](https://code-customs.vercel.app/).
 
 ### Features
 - **Fully Custom Website Development** - No templates or drag-and-drop builders.
