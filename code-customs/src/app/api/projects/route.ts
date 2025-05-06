@@ -24,7 +24,7 @@ export async function POST(request: Request) {
       const fileName = `${uuidv4()}${ext}`;
       const filePath = `uploads/${fileName}`;
 
-      const { error } = await supabase.storage.from("project-assets").upload(filePath, buffer, {
+      const { error } = await supabase.storage.from("projects").upload(filePath, buffer, {
         contentType: file.type,
       });
 
@@ -33,7 +33,7 @@ export async function POST(request: Request) {
         return null;
       }
 
-      const { data: publicUrlData } = supabase.storage.from("project-assets").getPublicUrl(filePath);
+      const { data: publicUrlData } = supabase.storage.from("projects").getPublicUrl(filePath);
       return publicUrlData?.publicUrl || null;
     }
 
