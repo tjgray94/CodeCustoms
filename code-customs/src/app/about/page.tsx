@@ -77,7 +77,7 @@ export default function AboutPage() {
               Our Mission
             </Typography>
             <Typography variant="body1" sx={{ fontSize: "1.1rem" }}>
-              To create unique, custom-coded websites that perfectly represent our clients' vision and needs.
+              To create unique, custom-coded websites that perfectly represent our clients&apos; vision and needs.
             </Typography>
           </Box>
         </Paper>

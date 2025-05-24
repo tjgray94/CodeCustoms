@@ -5,7 +5,7 @@ import BankAppDemo from "./components/BankAppDemo";
 import GameStoreAppDemo from "./components/GameStoreAppDemo";
 import CurrencyConverterDemo from "./components/CurrencyConverterDemo";
 import Footer from "./components/Footer";
-import { Box, Divider, Stack, Typography, Paper, Container, Button } from "@mui/material";
+import { Box, Divider, Typography, Paper, Container, Button } from "@mui/material";
 
 export default function Home() {
   return (
@@ -45,7 +45,7 @@ export default function Home() {
               fontStyle: 'italic'
             }}
           >
-            "Boldly custom, no cookie-cutter"
+            &quot;Boldly custom, no cookie-cutter&quot;
           </Typography>
           
           <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>

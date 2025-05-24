@@ -2,7 +2,7 @@
 
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-import { Box, Button, Container, Stack, TextField, Typography, Paper, Divider, IconButton } from "@mui/material";
+import { Box, Button, Container, Stack, TextField, Typography, Paper } from "@mui/material";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useState } from "react";
@@ -63,7 +63,7 @@ export default function ContactPage() {
                 Thank you for reaching out!
               </Typography>
               <Typography variant="body1" sx={{ mb: 3, maxWidth: '600px' }}>
-                We've received your inquiry and will get back to you as soon as possible. 
+                We&apos;ve received your inquiry and will get back to you as soon as possible. 
                 Our team typically responds within 24-48 business hours.
               </Typography>
               <Button 
@@ -82,7 +82,7 @@ export default function ContactPage() {
                     Contact Information
                   </Typography>
                   <Typography variant="body1" sx={{ mb: 3, color: 'text.secondary' }}>
-                    Have questions about our services? Reach out and we'll get back to you as soon as possible.
+                    Have questions about our services? Reach out and we&apos;ll get back to you as soon as possible.
                   </Typography>
                   
                   <Box sx={{ mb: 3 }}>
