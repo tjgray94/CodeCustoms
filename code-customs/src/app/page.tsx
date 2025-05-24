@@ -162,11 +162,11 @@ export default function Home() {
           <Divider sx={{ mb: 3 }} />
           
           <Typography variant="body1" gutterBottom sx={{ mb: 4 }}>
-            Throughout my IT career so far, I have been working to become a better developer by working on 
-            self-projects using different languages and frameworks in hopes of advancing my career. Nothing
-            much has happened yet but that will not stop me. I plan to continue learning and writing code
-            even when the right opportunity finally comes knocking or until my fingers fall off. Anyways, here&apos;s 
-            a few of the projects I&apos;ve worked on so far:
+            I&apos;ve dedicated my IT journey so far to growing as a developer by building personal projects using
+            a variety of languages and frameworks. While the right opportunity hasn&apos;t arrived yet, I&apos;m
+            undeterred -- I continue to learn, experiment, and write code everyday. Whether that opportunity comes 
+            tomorrow or years from now, I&apos;ll be ready (fingers intact, hopefully). Here are a few of the 
+            projects I&apos;ve worked on along the way:
           </Typography>
 
           <Box sx={{ 
