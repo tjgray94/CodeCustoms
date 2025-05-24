@@ -12,6 +12,7 @@ interface Props {
 
 const drawerWidth = 240;
 const navItems = ['About', 'Contact', 'Get Started'];
+const navLinks = ['/about', '/contact', '/get-started'];
 
 export default function Navbar(props: Props) {
   const { window } = props;
@@ -22,15 +23,23 @@ export default function Navbar(props: Props) {
   };
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-      <Typography variant="h6" sx={{ my: 2 }}>CodeCustoms</Typography>
+    <Box sx={{ textAlign: 'center' }}>
+      <Link href="/" style={{ textDecoration: 'none', color: 'inherit' }} onClick={handleDrawerToggle}>
+        <Typography variant="h6" sx={{ my: 2 }}>CodeCustoms</Typography>
+      </Link>
       <Divider />
       <List>
-        {navItems.map((item) => (
+        {navItems.map((item, index) => (
           <ListItem key={item} disablePadding>
-            <ListItemButton sx={{ textAlign: 'center' }}>
-              <ListItemText primary={item} />
-            </ListItemButton>
+            <Link 
+              href={navLinks[index]} 
+              style={{ textDecoration: 'none', color: 'inherit', width: '100%' }}
+              onClick={handleDrawerToggle}
+            >
+              <ListItemButton sx={{ textAlign: 'center' }}>
+                <ListItemText primary={item} />
+              </ListItemButton>
+            </Link>
           </ListItem>
         ))}
       </List>
@@ -42,7 +51,7 @@ export default function Navbar(props: Props) {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar component="nav">
+      <AppBar component="nav" position="sticky">
         <Toolbar sx={{ bgcolor: 'black' }}>
           <IconButton color="inherit" aria-label="open drawer"
             edge="start" onClick={handleDrawerToggle}
@@ -50,13 +59,17 @@ export default function Navbar(props: Props) {
           >
             <MenuIcon />
           </IconButton>
-          <Link href="/">
+          <Link href="/" style={{ display: 'flex', alignItems: 'center' }}>
             <Image src="/codecustomslogo.svg" alt="CodeCustoms" width={40} height={40} style={{ backgroundColor: "#ffffff"}} />
           </Link>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-            {navItems.map((item) => (
-              <Link key={item} href={`/${item.toLowerCase().replace(/\s+/g, '-')}`} passHref>
+            {navItems.map((item, index) => (
+              <Link 
+                key={item} 
+                href={navLinks[index]} 
+                style={{ textDecoration: 'none' }}
+              >
                 <Button sx={{ color: '#fff' }}>{item}</Button>
               </Link>
             ))}
@@ -77,7 +90,7 @@ export default function Navbar(props: Props) {
           {drawer}
         </Drawer>
       </nav>
-      <Box component="main" sx={{ p: 3 }}>
+      <Box component="main" sx={{ p: { xs: 1, sm: 3 } }}>
         <Toolbar />
       </Box>
     </Box>
