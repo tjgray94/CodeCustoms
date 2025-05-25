@@ -49,9 +49,9 @@ export default function Navbar(props: Props) {
   const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box>
       <CssBaseline />
-      <AppBar component="nav" position="sticky">
+      <AppBar component="nav" position="static" elevation={0}>
         <Toolbar sx={{ bgcolor: 'black' }}>
           <IconButton color="inherit" aria-label="open drawer"
             edge="start" onClick={handleDrawerToggle}
@@ -90,9 +90,6 @@ export default function Navbar(props: Props) {
           {drawer}
         </Drawer>
       </nav>
-      <Box component="main" sx={{ p: { xs: 1, sm: 3 } }}>
-        <Toolbar />
-      </Box>
     </Box>
   )
 }
