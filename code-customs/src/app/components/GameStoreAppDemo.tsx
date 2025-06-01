@@ -11,8 +11,8 @@ export default function GameStoreAppDemo() {
         <Typography gutterBottom variant="h6" component="div">GameStoreApp</Typography>
         <Typography variant="body2" sx={{ color: "text.secondary" }}>
           This application was created to manage the inventory of video games. Users are able to 
-          view their list of games along with their details and offers your typical CRUD operations
-          when interacting with the site.  
+          search and view the list of games along with their details and demonstrates simple CRUD 
+          operations when interacting with the site.  
         </Typography>
       </CardContent>
     </Card>
