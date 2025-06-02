@@ -3,6 +3,7 @@
 import Navbar from "./components/Navbar";
 import BankAppDemo from "./components/BankAppDemo";
 import GameStoreAppDemo from "./components/GameStoreAppDemo";
+import ERSDemo from "./components/ERSDemo";
 import CurrencyConverterDemo from "./components/CurrencyConverterDemo";
 import Footer from "./components/Footer";
 import { Box, Divider, Typography, Paper, Container, Button } from "@mui/material";
@@ -178,7 +179,7 @@ export default function Home() {
           }}>
             <BankAppDemo />
             <GameStoreAppDemo />
-            <CurrencyConverterDemo />
+            <ERSDemo />
           </Box>
         </Paper>
       </Container>
