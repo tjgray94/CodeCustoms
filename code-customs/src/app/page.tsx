@@ -1,11 +1,11 @@
 'use client';
 
 import Navbar from "./components/Navbar";
-import BankAppDemo from "./components/BankAppDemo";
-import GameStoreAppDemo from "./components/GameStoreAppDemo";
-import ERSDemo from "./components/ERSDemo";
+import DevelopmentProcess from "./components/DevelopmentProcess";
+import BenefitsComparison from "./components/BenefitsComparison";
+import SampleProjects from "./components/SampleProjects";
 import Footer from "./components/Footer";
-import { Box, Divider, Typography, Paper, Container, Button } from "@mui/material";
+import { Box, Typography, Paper, Container, Button } from "@mui/material";
 
 export default function Home() {
   return (
@@ -135,52 +135,15 @@ export default function Home() {
             </Typography>
           </Paper>
         </Box>
+        
+        {/* Development Process Timeline */}
+        <DevelopmentProcess />
+        
+        {/* Benefits Comparison */}
+        <BenefitsComparison />
 
-        <Paper 
-          elevation={3} 
-          sx={{ 
-            p: 4, 
-            mt: 6,
-            borderRadius: 2
-          }}
-        >
-          <Typography 
-            variant="h4" 
-            align="center" 
-            gutterBottom
-            sx={{ 
-              fontWeight: 600,
-              mb: 3,
-              background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
-              backgroundClip: 'text',
-              textFillColor: 'transparent',
-            }}
-          >
-            Sample Projects
-          </Typography>
-          
-          <Divider sx={{ mb: 3 }} />
-          
-          <Typography variant="body1" gutterBottom sx={{ mb: 4 }}>
-            I&apos;ve dedicated my IT journey so far to growing as a developer by building personal projects using
-            a variety of languages and frameworks. While the right opportunity hasn&apos;t arrived yet, I&apos;m
-            undeterred -- I continue to learn, experiment, and write code everyday. Whether that opportunity comes 
-            tomorrow or years from now, I&apos;ll be ready (fingers intact, hopefully). Here are a few of the 
-            projects I&apos;ve worked on along the way:
-          </Typography>
-
-          <Box sx={{ 
-            display: "flex", 
-            flexDirection: "column", 
-            alignItems: "center", 
-            gap: 4,
-            mt: 4
-          }}>
-            <BankAppDemo />
-            <GameStoreAppDemo />
-            <ERSDemo />
-          </Box>
-        </Paper>
+        {/* Sample Projects */}
+        <SampleProjects />
       </Container>
 
       <Footer />
