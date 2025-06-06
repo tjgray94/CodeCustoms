@@ -2,7 +2,7 @@
 
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-import { Box, Typography, Container, TextField, Button, Stack, MenuItem, InputLabel, Select, FormControl, Paper, Stepper, Step, StepLabel, Divider, Chip } from "@mui/material";
+import { Box, Typography, Container, TextField, Button, Stack, MenuItem, InputLabel, Select, FormControl, Paper, Stepper, Step, StepLabel, Chip } from "@mui/material";
 import { useForm, Controller } from "react-hook-form";
 import axios from "axios";
 import { useState, useRef } from "react";
@@ -84,33 +84,119 @@ export default function GetStartedPage() {
     <Box sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
       <Navbar />
 
-      <Container maxWidth="md" sx={{ flex: 1, mt: 6, mb: 8 }}>
-        <Paper elevation={3} sx={{ p: 4, borderRadius: 2 }}>
-          <Typography variant="h3" align="center" gutterBottom sx={{ 
-            fontWeight: 600, 
-            background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
-            backgroundClip: 'text',
-            textFillColor: 'transparent',
-            mb: 2
-          }}>
+      <Container maxWidth="lg" sx={{ flex: 1, mt: 6, mb: 8 }}>
+        <Box sx={{ position: 'relative' }}>
+          <Typography 
+            variant="h3" 
+            align="left" 
+            gutterBottom 
+            sx={{ 
+              fontWeight: 700, 
+              background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
+              backgroundClip: 'text',
+              textFillColor: 'transparent',
+              mb: 3,
+              position: 'relative',
+              display: 'inline-block',
+              '&::after': {
+                content: '""',
+                position: 'absolute',
+                bottom: -10,
+                left: 0,
+                width: '80px',
+                height: '4px',
+                background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
+              }
+            }}
+          >
             Let&apos;s Get Started!
           </Typography>
           
-          <Typography variant="body1" align="center" sx={{ mb: 4, color: 'text.secondary' }}>
+          <Typography 
+            variant="body1" 
+            sx={{ 
+              mb: 5, 
+              color: 'text.secondary',
+              maxWidth: '700px',
+              fontSize: '1.1rem'
+            }}
+          >
             Provide some details so we can gauge a deadline and create your perfect website
           </Typography>
           
-          <Stepper activeStep={activeStep} sx={{ mb: 4 }}>
-            {steps.map((label) => (
-              <Step key={label}>
-                <StepLabel>{label}</StepLabel>
-              </Step>
-            ))}
-          </Stepper>
-          
-          <Divider sx={{ mb: 4 }} />
+          <Box 
+            sx={{ 
+              position: 'relative',
+              mb: 6,
+              pb: 1,
+              '&::before': {
+                content: '""',
+                position: 'absolute',
+                bottom: 0,
+                left: 0,
+                right: 0,
+                height: '1px',
+                background: 'linear-gradient(to right, rgba(33, 150, 243, 0.7), rgba(33, 203, 243, 0.1))',
+              }
+            }}
+          >
+            <Stepper 
+              activeStep={activeStep} 
+              sx={{ 
+                '& .MuiStepLabel-root': {
+                  color: '#1976d2'
+                },
+                '& .MuiStepIcon-root.Mui-active': {
+                  color: '#1976d2'
+                },
+                '& .MuiStepIcon-root.Mui-completed': {
+                  color: '#4caf50'
+                }
+              }}
+            >
+              {steps.map((label) => (
+                <Step key={label}>
+                  <StepLabel>{label}</StepLabel>
+                </Step>
+              ))}
+            </Stepper>
+          </Box>
      
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <Paper 
+            elevation={4} 
+            sx={{ 
+              p: 5, 
+              borderRadius: 3,
+              background: 'white',
+              position: 'relative',
+              overflow: 'hidden'
+            }}
+          >
+            {/* Decorative elements */}
+            <Box sx={{ 
+              position: 'absolute',
+              top: -60,
+              right: -60,
+              width: 150,
+              height: 150,
+              borderRadius: '50%',
+              background: 'rgba(33, 150, 243, 0.05)',
+              zIndex: 0
+            }} />
+            
+            <Box sx={{ 
+              position: 'absolute',
+              bottom: -80,
+              left: -80,
+              width: 200,
+              height: 200,
+              borderRadius: '50%',
+              background: 'rgba(255, 152, 0, 0.05)',
+              zIndex: 0
+            }} />
+            
+            <Box sx={{ position: 'relative', zIndex: 1 }}>
+              <form onSubmit={handleSubmit(onSubmit)}>
             {activeStep === 0 && (
               <Stack spacing={3}>
                 <TextField 
@@ -386,9 +472,16 @@ export default function GetStartedPage() {
                     variant="contained" 
                     color="primary"
                     sx={{ 
-                      borderRadius: 2,
+                      borderRadius: 50,
+                      px: 4,
+                      py: 1.2,
                       background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
-                      boxShadow: '0 3px 5px 2px rgba(33, 203, 243, .3)',
+                      boxShadow: '0 4px 10px rgba(33, 150, 243, 0.3)',
+                      '&:hover': {
+                        boxShadow: '0 6px 14px rgba(33, 150, 243, 0.4)',
+                        transform: 'translateY(-2px)'
+                      },
+                      transition: 'all 0.3s ease'
                     }}
                   >
                     Submit Project Details
@@ -396,8 +489,10 @@ export default function GetStartedPage() {
                 </Box>
               </Stack>
             )}
-          </form>
-        </Paper>
+              </form>
+            </Box>
+          </Paper>
+        </Box>
       </Container>
       
       <Footer />
