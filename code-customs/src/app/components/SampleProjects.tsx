@@ -1,6 +1,6 @@
 'use client';
 
-import { Paper, Typography, Divider, Box, Button, Card, CardContent, CardMedia } from '@mui/material';
+import { Typography, Box } from '@mui/material';
 import React from 'react';
 import BankAppDemo from './BankAppDemo';
 import ERSDemo from './ERSDemo';
@@ -98,119 +98,11 @@ export default function SampleProjects() {
           gridTemplateColumns: { xs: '1fr', md: '1fr 1fr', lg: '1fr 1fr 1fr' }, 
           gap: 3
         }}>
-          <Card elevation={2} sx={{ 
-            borderRadius: 2,
-            overflow: 'hidden',
-            transition: 'all 0.3s ease',
-            '&:hover': {
-              transform: 'translateY(-8px)',
-              boxShadow: '0 12px 20px rgba(0,0,0,0.1)'
-            }
-          }}>
-            <CardMedia
-              component="img"
-              height="160"
-              image="BankApp.png"
-              alt="BankApp"
-              sx={{ objectFit: 'cover' }}
-            />
-            <CardContent>
-              <Typography variant="h6" gutterBottom>BankApp</Typography>
-              <Typography variant="body2" color="text.secondary">
-                Standard banking application having simple features i.e. login functionality, create and 
-                delete user accounts, open checking and/or savings account, with ability to deposit, withdraw, 
-                and/or transfer funds as well as view transaction history.
-              </Typography>
-              <Box sx={{ mt: 2, display: 'flex', justifyContent: 'center' }}>
-                <Button 
-                  variant="outlined" 
-                  sx={{ 
-                    borderRadius: 2,
-                    px: 3,
-                    minWidth: '140px'
-                  }}
-                >
-                  View Demo
-                </Button>
-              </Box>
-            </CardContent>
-          </Card>
+          <BankAppDemo />
           
-          <Card elevation={2} sx={{ 
-            borderRadius: 2,
-            overflow: 'hidden',
-            transition: 'all 0.3s ease',
-            '&:hover': {
-              transform: 'translateY(-8px)',
-              boxShadow: '0 12px 20px rgba(0,0,0,0.1)'
-            }
-          }}>
-            <CardMedia
-              component="img"
-              height="160"
-              image="GameStoreApp.png"
-              alt="GameStoreApp"
-              sx={{ objectFit: 'cover' }}
-            />
-            <CardContent>
-              <Typography variant="h6" gutterBottom>GameStoreApp</Typography>
-              <Typography variant="body2" color="text.secondary">
-                This application was created to manage the inventory of video games. Users are able to 
-                search and view the list of games along with their details and demonstrates simple CRUD 
-                operations when interacting with the site.
-              </Typography>
-              <Box sx={{ mt: 2, display: 'flex', justifyContent: 'center' }}>
-                <Button 
-                  variant="outlined" 
-                  sx={{ 
-                    borderRadius: 2,
-                    px: 3,
-                    minWidth: '140px'
-                  }}
-                >
-                  View Demo
-                </Button>
-              </Box>
-            </CardContent>
-          </Card>
+          <GameStoreAppDemo />
           
-          <Card elevation={2} sx={{ 
-            borderRadius: 2,
-            overflow: 'hidden',
-            transition: 'all 0.3s ease',
-            '&:hover': {
-              transform: 'translateY(-8px)',
-              boxShadow: '0 12px 20px rgba(0,0,0,0.1)'
-            }
-          }}>
-            <CardMedia
-              component="img"
-              height="160"
-              image="ERS.png"
-              alt="Employee Reimbursement System"
-              sx={{ objectFit: 'cover' }}
-            />
-            <CardContent>
-              <Typography variant="h6" gutterBottom>Employee Reimbursement System</Typography>
-              <Typography variant="body2" color="text.secondary">
-                With this application, users can apply for reimbursements for expenses incurred on
-                company time. Employees can login and view their requests while managers can view and
-                manage the employee inventory as well as approve or deny requests.
-              </Typography>
-              <Box sx={{ mt: 2, display: 'flex', justifyContent: 'center' }}>
-                <Button 
-                  variant="outlined" 
-                  sx={{ 
-                    borderRadius: 2,
-                    px: 3,
-                    minWidth: '140px'
-                  }}
-                >
-                  View Demo
-                </Button>
-              </Box>
-            </CardContent>
-          </Card>
+          <ERSDemo />
         </Box>
         
         <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
