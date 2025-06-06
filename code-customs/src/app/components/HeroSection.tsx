@@ -1,6 +1,7 @@
 'use client';
 
 import { Box, Container, Typography, Button } from "@mui/material";
+import Image from "next/image";
 
 export default function HeroSection() {
   return (
@@ -160,25 +161,27 @@ export default function HeroSection() {
                 zIndex: -1
               }
             }}>
-              <Typography variant="h4" sx={{ fontWeight: 300, color: 'rgba(255,255,255,0.9)' }}>
-                Custom Code
-              </Typography>
+              <Box sx={{ 
+                position: 'relative', 
+                width: '100%', 
+                height: '100%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}>
+                <Image 
+                  src="/coding.jpg" 
+                  alt="Custom Code" 
+                  width={500}
+                  height={200}
+                  style={{
+                    objectFit: 'contain',
+                    maxWidth: '100%',
+                    maxHeight: '100%'
+                  }}
+                />
+              </Box>
             </Box>
-            
-            {/* Decorative code element */}
-            <Box sx={{ 
-              position: 'absolute',
-              bottom: -30,
-              right: -20,
-              width: '150px',
-              height: '150px',
-              borderRadius: '10px',
-              background: 'rgba(255,255,255,0.05)',
-              backdropFilter: 'blur(10px)',
-              border: '1px solid rgba(255,255,255,0.1)',
-              transform: 'rotate(-15deg)',
-              boxShadow: '0 15px 35px rgba(0,0,0,0.2)',
-            }} />
           </Box>
         </Box>
       </Container>
