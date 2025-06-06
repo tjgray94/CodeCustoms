@@ -85,25 +85,26 @@ export default function BenefitsComparison() {
           elevation={3} 
           sx={{ 
             p: 3, 
+            pt: 5,
             borderRadius: 2,
             bgcolor: '#e8f4fd',
-            border: '1px solid #bbdefb',
-            position: 'relative',
-            overflow: 'hidden'
+            border: '2px solid #2196f3',
+            position: 'relative'
           }}
         >
           <Box 
             sx={{ 
-              position: 'absolute', 
-              top: 12, 
-              right: -30, 
-              transform: 'rotate(45deg)',
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
               bgcolor: '#2196f3',
               color: 'white',
-              py: 0.5,
-              px: 4,
-              fontSize: '0.75rem',
-              fontWeight: 'bold'
+              py: 0.75,
+              textAlign: 'center',
+              fontWeight: 'bold',
+              fontSize: '0.875rem',
+              letterSpacing: '1px'
             }}
           >
             RECOMMENDED
