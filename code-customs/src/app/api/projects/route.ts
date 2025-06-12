@@ -1,11 +1,14 @@
 import { NextResponse } from "next/server";
 import { BusinessType, PageRange, PrismaClient } from "@/generated/prisma";
-import { v4 as uuidv4 } from "uuid";
-import { createClient } from "@supabase/supabase-js";
+import { v2 as cloudinary } from "cloudinary";
 
 const prisma = new PrismaClient();
 
-const supabase = createClient(process.env.SUPABASE_URL!, process.env.SUPABASE_ANON_KEY!);
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 export async function POST(request: Request) {
   try {
@@ -19,24 +22,19 @@ export async function POST(request: Request) {
       
       const arrayBuffer = await file.arrayBuffer();
       const buffer = Buffer.from(arrayBuffer);
-      const ext = ".png";
-      const fileName = `${uuidv4()}${ext}`;
 
-      console.log("Uploading file with type:", file.type);
+      const uploadResult = await new Promise<{ url: string }>((resolve, reject) => {
+        cloudinary.uploader.upload_stream({ folder: "projects" }, (error, result) => {
+          if (error || !result || !result.secure_url) {
+            console.error("Cloudinary upload error:", error);
+            return reject(error);
+          }
 
-      const { error: uploadError, data: uploadData } = await supabase.storage.from("projects").upload(fileName, buffer, {
-        contentType: file.type || "image/png",
-      });
-
-      if (uploadError) {
-        console.error("Supabase upload error:", uploadError.message);
-        return null;
-      }
-
-      console.log("Upload success:", uploadData);
-
-      const { data: publicUrlData } = supabase.storage.from("projects").getPublicUrl(fileName);
-      return publicUrlData?.publicUrl || null;
+          resolve({ url: result.secure_url });     
+        }).end(buffer);
+      })
+  
+      return uploadResult.url;
     }
 
     const logoPath = await saveFile(logoFile);
