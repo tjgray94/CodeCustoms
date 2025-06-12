@@ -154,11 +154,11 @@ exports.Prisma.NullsOrder = {
   last: 'last'
 };
 exports.BusinessType = exports.$Enums.BusinessType = {
-  E_commerce: 'E_commerce',
-  Portfolio: 'Portfolio',
-  Service_based: 'Service_based',
-  Blog: 'Blog',
-  Other: 'Other'
+  Apparel: 'Apparel',
+  CreativePortfolio: 'CreativePortfolio',
+  AppointmentBased: 'AppointmentBased',
+  InformationalSite: 'InformationalSite',
+  CustomIdea: 'CustomIdea'
 };
 
 exports.PageRange = exports.$Enums.PageRange = {

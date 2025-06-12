@@ -6,7 +6,6 @@ import { Box, Typography, Container, TextField, Button, Stack, MenuItem, InputLa
 import { useForm, Controller } from "react-hook-form";
 import axios from "axios";
 import { useState, useRef } from "react";
-import Image from "next/image";
 
 type FormInputs = {
   businessName: string;
@@ -218,11 +217,11 @@ export default function GetStartedPage() {
                     <FormControl fullWidth error={!!errors.businessType}>
                       <InputLabel>Business Type</InputLabel>
                       <Select {...field} label="Business Type" sx={{ borderRadius: 2 }}>
-                        <MenuItem value="E_commerce">E-commerce</MenuItem>
-                        <MenuItem value="Portfolio">Portfolio</MenuItem>
-                        <MenuItem value="Service_based">Service-Based</MenuItem>
-                        <MenuItem value="Blog">Blog</MenuItem>
-                        <MenuItem value="Other">Other</MenuItem>
+                        <MenuItem value="Apparel">Clothing Brand/Apparel</MenuItem>
+                        <MenuItem value="CreativePortfolio">Creative Portfolio/Showcase</MenuItem>
+                        <MenuItem value="AppointmentBased">Booking/Appointment Based</MenuItem>
+                        <MenuItem value="InformationalSite">Informational Site</MenuItem>
+                        <MenuItem value="CustomIdea">Custom Idea/Other</MenuItem>
                       </Select>
                     </FormControl>
                   )}
@@ -294,7 +293,7 @@ export default function GetStartedPage() {
                             </>
                           ) : (
                             <Box sx={{ position: 'relative', width: '100%', height: '100%', minHeight: 150 }}>
-                              <Image 
+                              <img 
                                 src={logoPreview} 
                                 alt="Logo Preview" 
                                 style={{ 
@@ -367,7 +366,7 @@ export default function GetStartedPage() {
                             </>
                           ) : (
                             <Box sx={{ position: 'relative', width: '100%', height: '100%', minHeight: 150 }}>
-                              <Image 
+                              <img 
                                 src={sketchPreview} 
                                 alt="Sketch Preview" 
                                 style={{ 
@@ -457,8 +456,8 @@ export default function GetStartedPage() {
                   <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap sx={{ mb: 2 }}>
                     <Chip label="Contact Form" variant="outlined" size="small" />
                     <Chip label="Image Gallery" variant="outlined" size="small" />
-                    <Chip label="Blog" variant="outlined" size="small" />
-                    <Chip label="E-commerce" variant="outlined" size="small" />
+                    <Chip label="Informational Site" variant="outlined" size="small" />
+                    <Chip label="Apparel" variant="outlined" size="small" />
                     <Chip label="Social Media Integration" variant="outlined" size="small" />
                   </Stack>
                 </Box>

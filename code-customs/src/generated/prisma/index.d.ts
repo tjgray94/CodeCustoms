@@ -29,11 +29,11 @@ export type Project = $Result.DefaultSelection<Prisma.$ProjectPayload>
  */
 export namespace $Enums {
   export const BusinessType: {
-  E_commerce: 'E_commerce',
-  Portfolio: 'Portfolio',
-  Service_based: 'Service_based',
-  Blog: 'Blog',
-  Other: 'Other'
+  Apparel: 'Apparel',
+  CreativePortfolio: 'CreativePortfolio',
+  AppointmentBased: 'AppointmentBased',
+  InformationalSite: 'InformationalSite',
+  CustomIdea: 'CustomIdea'
 };
 
 export type BusinessType = (typeof BusinessType)[keyof typeof BusinessType]

@@ -38,11 +38,11 @@ model Project {
 }
 
 enum BusinessType {
-  E_commerce
-  Portfolio
-  Service_based
-  Blog
-  Other
+  Apparel
+  CreativePortfolio
+  AppointmentBased
+  InformationalSite
+  CustomIdea
 }
 
 enum PageRange {
