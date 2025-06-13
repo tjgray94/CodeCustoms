@@ -13,8 +13,8 @@ export default function AboutPage() {
           position: 'relative',
           overflow: 'hidden',
           color: 'white',
-          py: { xs: 8, md: 10 },
-          mb: 6
+          py: { xs: 4, md: 5 },
+          mb: 4
         }}
       >
         {/* Background elements */}
@@ -55,37 +55,14 @@ export default function AboutPage() {
         
         <Container maxWidth="lg">
           <Box sx={{ textAlign: 'center' }}>
-            <Typography 
-              variant="h2" 
-              gutterBottom
+            <Box 
               sx={{ 
-                fontWeight: 700, 
-                fontSize: { xs: '2.2rem', sm: '3rem', md: '3.5rem' },
-                textShadow: '0 2px 10px rgba(0,0,0,0.3)'
-              }}
-            >
-              Our Story
-            </Typography>
-            
-            <Box sx={{ 
-              maxWidth: '700px', 
-              mx: 'auto', 
-              mt: 3,
-              position: 'relative',
-              zIndex: 1
-            }}>
-              <Avatar 
-                sx={{ 
-                  width: 150, 
-                  height: 150, 
-                  border: '4px solid rgba(255,255,255,0.2)',
-                  boxShadow: '0 8px 20px rgba(0,0,0,0.2)',
-                  mx: 'auto',
-                  mb: 3
-                }}
-                alt="Founder"
-                src="/founder.jpg"
-              />
+                maxWidth: '700px', 
+                mx: 'auto', 
+                mt: 3,
+                position: 'relative',
+                zIndex: 1
+              }}>
             </Box>
           </Box>
         </Container>
