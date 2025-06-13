@@ -33,6 +33,7 @@ export default function GetStartedPage() {
       const formData = new FormData();
 
       formData.append("businessName", data.businessName);
+      formData.append("businessEmail", data.businessEmail);
       formData.append("businessType", data.businessType);
       if (data.colorScheme) formData.append("colorScheme", data.colorScheme);
       if (data.pageRange) formData.append("pageRange", data.pageRange);
