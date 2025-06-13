@@ -1,6 +1,6 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { Box, Container, Typography, Paper, Avatar } from "@mui/material";
+import { Box, Container, Typography, Paper } from "@mui/material";
 
 export default function AboutPage() {
   return (
