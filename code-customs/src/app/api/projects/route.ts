@@ -41,6 +41,7 @@ export async function POST(request: Request) {
     const sketchPath = await saveFile(sketchFile);
 
     const businessName = formData.get("businessName") as string;
+    const businessEmail = formData.get("businessEmail") as string;
     const businessTypeStr = formData.get("businessType") as string;
     const colorScheme = formData.get("colorScheme") as string;
     const pageRangeStr = formData.get("pageRange") as string;
@@ -65,6 +66,7 @@ export async function POST(request: Request) {
     const newProject = await prisma.project.create({
       data: {
         businessName,
+        businessEmail,
         businessType,
         colorScheme,
         pageRange,

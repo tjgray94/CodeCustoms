@@ -2045,6 +2045,7 @@ export namespace Prisma {
   export type ProjectMinAggregateOutputType = {
     projectId: number | null
     businessName: string | null
+    businessEmail: string | null
     businessType: $Enums.BusinessType | null
     logo: string | null
     sketch: string | null
@@ -2056,6 +2057,7 @@ export namespace Prisma {
   export type ProjectMaxAggregateOutputType = {
     projectId: number | null
     businessName: string | null
+    businessEmail: string | null
     businessType: $Enums.BusinessType | null
     logo: string | null
     sketch: string | null
@@ -2067,6 +2069,7 @@ export namespace Prisma {
   export type ProjectCountAggregateOutputType = {
     projectId: number
     businessName: number
+    businessEmail: number
     businessType: number
     logo: number
     sketch: number
@@ -2088,6 +2091,7 @@ export namespace Prisma {
   export type ProjectMinAggregateInputType = {
     projectId?: true
     businessName?: true
+    businessEmail?: true
     businessType?: true
     logo?: true
     sketch?: true
@@ -2099,6 +2103,7 @@ export namespace Prisma {
   export type ProjectMaxAggregateInputType = {
     projectId?: true
     businessName?: true
+    businessEmail?: true
     businessType?: true
     logo?: true
     sketch?: true
@@ -2110,6 +2115,7 @@ export namespace Prisma {
   export type ProjectCountAggregateInputType = {
     projectId?: true
     businessName?: true
+    businessEmail?: true
     businessType?: true
     logo?: true
     sketch?: true
@@ -2208,6 +2214,7 @@ export namespace Prisma {
   export type ProjectGroupByOutputType = {
     projectId: number
     businessName: string
+    businessEmail: string
     businessType: $Enums.BusinessType
     logo: string | null
     sketch: string | null
@@ -2238,6 +2245,7 @@ export namespace Prisma {
   export type ProjectSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     projectId?: boolean
     businessName?: boolean
+    businessEmail?: boolean
     businessType?: boolean
     logo?: boolean
     sketch?: boolean
@@ -2249,6 +2257,7 @@ export namespace Prisma {
   export type ProjectSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     projectId?: boolean
     businessName?: boolean
+    businessEmail?: boolean
     businessType?: boolean
     logo?: boolean
     sketch?: boolean
@@ -2260,6 +2269,7 @@ export namespace Prisma {
   export type ProjectSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     projectId?: boolean
     businessName?: boolean
+    businessEmail?: boolean
     businessType?: boolean
     logo?: boolean
     sketch?: boolean
@@ -2271,6 +2281,7 @@ export namespace Prisma {
   export type ProjectSelectScalar = {
     projectId?: boolean
     businessName?: boolean
+    businessEmail?: boolean
     businessType?: boolean
     logo?: boolean
     sketch?: boolean
@@ -2279,7 +2290,7 @@ export namespace Prisma {
     features?: boolean
   }
 
-  export type ProjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"projectId" | "businessName" | "businessType" | "logo" | "sketch" | "colorScheme" | "pageRange" | "features", ExtArgs["result"]["project"]>
+  export type ProjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"projectId" | "businessName" | "businessEmail" | "businessType" | "logo" | "sketch" | "colorScheme" | "pageRange" | "features", ExtArgs["result"]["project"]>
 
   export type $ProjectPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Project"
@@ -2287,6 +2298,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       projectId: number
       businessName: string
+      businessEmail: string
       businessType: $Enums.BusinessType
       logo: string | null
       sketch: string | null
@@ -2718,6 +2730,7 @@ export namespace Prisma {
   interface ProjectFieldRefs {
     readonly projectId: FieldRef<"Project", 'Int'>
     readonly businessName: FieldRef<"Project", 'String'>
+    readonly businessEmail: FieldRef<"Project", 'String'>
     readonly businessType: FieldRef<"Project", 'BusinessType'>
     readonly logo: FieldRef<"Project", 'String'>
     readonly sketch: FieldRef<"Project", 'String'>
@@ -3118,6 +3131,7 @@ export namespace Prisma {
   export const ProjectScalarFieldEnum: {
     projectId: 'projectId',
     businessName: 'businessName',
+    businessEmail: 'businessEmail',
     businessType: 'businessType',
     logo: 'logo',
     sketch: 'sketch',
@@ -3291,6 +3305,7 @@ export namespace Prisma {
     NOT?: ProjectWhereInput | ProjectWhereInput[]
     projectId?: IntFilter<"Project"> | number
     businessName?: StringFilter<"Project"> | string
+    businessEmail?: StringFilter<"Project"> | string
     businessType?: EnumBusinessTypeFilter<"Project"> | $Enums.BusinessType
     logo?: StringNullableFilter<"Project"> | string | null
     sketch?: StringNullableFilter<"Project"> | string | null
@@ -3302,6 +3317,7 @@ export namespace Prisma {
   export type ProjectOrderByWithRelationInput = {
     projectId?: SortOrder
     businessName?: SortOrder
+    businessEmail?: SortOrder
     businessType?: SortOrder
     logo?: SortOrderInput | SortOrder
     sketch?: SortOrderInput | SortOrder
@@ -3316,6 +3332,7 @@ export namespace Prisma {
     OR?: ProjectWhereInput[]
     NOT?: ProjectWhereInput | ProjectWhereInput[]
     businessName?: StringFilter<"Project"> | string
+    businessEmail?: StringFilter<"Project"> | string
     businessType?: EnumBusinessTypeFilter<"Project"> | $Enums.BusinessType
     logo?: StringNullableFilter<"Project"> | string | null
     sketch?: StringNullableFilter<"Project"> | string | null
@@ -3327,6 +3344,7 @@ export namespace Prisma {
   export type ProjectOrderByWithAggregationInput = {
     projectId?: SortOrder
     businessName?: SortOrder
+    businessEmail?: SortOrder
     businessType?: SortOrder
     logo?: SortOrderInput | SortOrder
     sketch?: SortOrderInput | SortOrder
@@ -3346,6 +3364,7 @@ export namespace Prisma {
     NOT?: ProjectScalarWhereWithAggregatesInput | ProjectScalarWhereWithAggregatesInput[]
     projectId?: IntWithAggregatesFilter<"Project"> | number
     businessName?: StringWithAggregatesFilter<"Project"> | string
+    businessEmail?: StringWithAggregatesFilter<"Project"> | string
     businessType?: EnumBusinessTypeWithAggregatesFilter<"Project"> | $Enums.BusinessType
     logo?: StringNullableWithAggregatesFilter<"Project"> | string | null
     sketch?: StringNullableWithAggregatesFilter<"Project"> | string | null
@@ -3409,6 +3428,7 @@ export namespace Prisma {
 
   export type ProjectCreateInput = {
     businessName: string
+    businessEmail: string
     businessType: $Enums.BusinessType
     logo?: string | null
     sketch?: string | null
@@ -3420,6 +3440,7 @@ export namespace Prisma {
   export type ProjectUncheckedCreateInput = {
     projectId?: number
     businessName: string
+    businessEmail: string
     businessType: $Enums.BusinessType
     logo?: string | null
     sketch?: string | null
@@ -3430,6 +3451,7 @@ export namespace Prisma {
 
   export type ProjectUpdateInput = {
     businessName?: StringFieldUpdateOperationsInput | string
+    businessEmail?: StringFieldUpdateOperationsInput | string
     businessType?: EnumBusinessTypeFieldUpdateOperationsInput | $Enums.BusinessType
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     sketch?: NullableStringFieldUpdateOperationsInput | string | null
@@ -3441,6 +3463,7 @@ export namespace Prisma {
   export type ProjectUncheckedUpdateInput = {
     projectId?: IntFieldUpdateOperationsInput | number
     businessName?: StringFieldUpdateOperationsInput | string
+    businessEmail?: StringFieldUpdateOperationsInput | string
     businessType?: EnumBusinessTypeFieldUpdateOperationsInput | $Enums.BusinessType
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     sketch?: NullableStringFieldUpdateOperationsInput | string | null
@@ -3452,6 +3475,7 @@ export namespace Prisma {
   export type ProjectCreateManyInput = {
     projectId?: number
     businessName: string
+    businessEmail: string
     businessType: $Enums.BusinessType
     logo?: string | null
     sketch?: string | null
@@ -3462,6 +3486,7 @@ export namespace Prisma {
 
   export type ProjectUpdateManyMutationInput = {
     businessName?: StringFieldUpdateOperationsInput | string
+    businessEmail?: StringFieldUpdateOperationsInput | string
     businessType?: EnumBusinessTypeFieldUpdateOperationsInput | $Enums.BusinessType
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     sketch?: NullableStringFieldUpdateOperationsInput | string | null
@@ -3473,6 +3498,7 @@ export namespace Prisma {
   export type ProjectUncheckedUpdateManyInput = {
     projectId?: IntFieldUpdateOperationsInput | number
     businessName?: StringFieldUpdateOperationsInput | string
+    businessEmail?: StringFieldUpdateOperationsInput | string
     businessType?: EnumBusinessTypeFieldUpdateOperationsInput | $Enums.BusinessType
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     sketch?: NullableStringFieldUpdateOperationsInput | string | null
@@ -3610,6 +3636,7 @@ export namespace Prisma {
   export type ProjectCountOrderByAggregateInput = {
     projectId?: SortOrder
     businessName?: SortOrder
+    businessEmail?: SortOrder
     businessType?: SortOrder
     logo?: SortOrder
     sketch?: SortOrder
@@ -3625,6 +3652,7 @@ export namespace Prisma {
   export type ProjectMaxOrderByAggregateInput = {
     projectId?: SortOrder
     businessName?: SortOrder
+    businessEmail?: SortOrder
     businessType?: SortOrder
     logo?: SortOrder
     sketch?: SortOrder
@@ -3636,6 +3664,7 @@ export namespace Prisma {
   export type ProjectMinOrderByAggregateInput = {
     projectId?: SortOrder
     businessName?: SortOrder
+    businessEmail?: SortOrder
     businessType?: SortOrder
     logo?: SortOrder
     sketch?: SortOrder

@@ -25,14 +25,15 @@ model Inquiry {
 }
 
 model Project {
-  projectId    Int          @id @default(autoincrement())
-  businessName String
-  businessType BusinessType
-  logo         String?
-  sketch       String?
-  colorScheme  String?
-  pageRange    PageRange
-  features     String?
+  projectId     Int          @id @default(autoincrement())
+  businessName  String
+  businessEmail String
+  businessType  BusinessType
+  logo          String?
+  sketch        String?
+  colorScheme   String?
+  pageRange     PageRange
+  features      String?
 
   @@map("projects")
 }

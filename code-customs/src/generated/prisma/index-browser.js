@@ -131,6 +131,7 @@ exports.Prisma.InquiryScalarFieldEnum = {
 exports.Prisma.ProjectScalarFieldEnum = {
   projectId: 'projectId',
   businessName: 'businessName',
+  businessEmail: 'businessEmail',
   businessType: 'businessType',
   logo: 'logo',
   sketch: 'sketch',

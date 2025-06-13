@@ -9,6 +9,7 @@ import { useState, useRef } from "react";
 
 type FormInputs = {
   businessName: string;
+  businessEmail: string;
   businessType: string;
   colorScheme?: string;
   pageRange?: string;
@@ -23,7 +24,7 @@ export default function GetStartedPage() {
   const [activeStep, setActiveStep] = useState(0);
   const businessNameRef = useRef<string>("");
 
-  const { register, handleSubmit, reset, control, formState: { errors } } = useForm<FormInputs>({
+  const { register, handleSubmit, reset, control, formState: { errors }, getValues } = useForm<FormInputs>({
     defaultValues: { businessType: "", pageRange: "" }
   });
   
@@ -67,8 +68,25 @@ export default function GetStartedPage() {
   const handleNext = () => {
     if (activeStep === 0) {
       const businessNameValue = businessNameRef.current;
+      const { businessEmail, businessType } = getValues();
+
       if (!businessNameValue || businessNameValue.trim() === "") {
         alert("Please enter a business name before proceeding");
+        return;
+      }
+
+      if (!businessEmail || businessEmail.trim() === "") {
+        alert("Please enter a business email before proceeding");
+        return;
+      }
+
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(businessEmail)) {
+      alert("Please enter a valid email address");
+      return;
+      }
+
+      if (!businessType || businessType.trim() === "") {
+        alert("Please select a business type before proceeding");
         return;
       }
     }
@@ -196,298 +214,316 @@ export default function GetStartedPage() {
             
             <Box sx={{ position: 'relative', zIndex: 1 }}>
               <form onSubmit={handleSubmit(onSubmit)}>
-            {activeStep === 0 && (
-              <Stack spacing={3}>
-                <TextField 
-                  label="Business Name" 
-                  required 
-                  fullWidth 
-                  variant="outlined"
-                  error={!!errors.businessName} 
-                  helperText={errors.businessName?.message as string || ''}
-                  {...register("businessName", { 
-                    required: "A Business Name is required",
-                    onChange: (e) => { businessNameRef.current = e.target.value; }
-                  })}
-                  InputProps={{ sx: { borderRadius: 2 } }}
-                />
+                {activeStep === 0 && (
+                  <Stack spacing={3}>
+                    <TextField 
+                      label="Business Name" 
+                      required 
+                      fullWidth 
+                      variant="outlined"
+                      error={!!errors.businessName} 
+                      helperText={errors.businessName?.message as string || ''}
+                      {...register("businessName", { 
+                        required: "A Business Name is required",
+                        onChange: (e) => { businessNameRef.current = e.target.value; }
+                      })}
+                      InputProps={{ sx: { borderRadius: 2 } }}
+                    />
 
-                <Controller name="businessType" control={control} rules={{ required: "Business Type is required" }}
-                  render={({ field }) => (
-                    <FormControl fullWidth error={!!errors.businessType}>
-                      <InputLabel>Business Type</InputLabel>
-                      <Select {...field} label="Business Type" sx={{ borderRadius: 2 }}>
-                        <MenuItem value="Apparel">Clothing Brand/Apparel</MenuItem>
-                        <MenuItem value="CreativePortfolio">Creative Portfolio/Showcase</MenuItem>
-                        <MenuItem value="AppointmentBased">Booking/Appointment Based</MenuItem>
-                        <MenuItem value="InformationalSite">Informational Site</MenuItem>
-                        <MenuItem value="CustomIdea">Custom Idea/Other</MenuItem>
-                      </Select>
-                    </FormControl>
-                  )}
-                />
-                
-                <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2 }}>
-                  <Button 
-                    variant="contained" 
-                    onClick={handleNext}
-                    sx={{ 
-                      borderRadius: 2,
-                      background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
-                      boxShadow: '0 3px 5px 2px rgba(33, 203, 243, .3)',
-                    }}
-                  >
-                    Next
-                  </Button>
-                </Box>
-              </Stack>
-            )}
-            
-            {activeStep === 1 && (
-              <Stack spacing={3}>
-                <Typography variant="h6" gutterBottom>Upload Your Brand Assets</Typography>
-                
-                <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' }, gap: 3 }}>
-                  <Box>
-                    <Controller name="logoUpload" control={control} defaultValue={undefined} 
+                    <TextField 
+                      label="Business Email" 
+                      required 
+                      fullWidth 
+                      variant="outlined"
+                      type="email"
+                      error={!!errors.businessEmail} 
+                      helperText={errors.businessEmail?.message as string || ''}
+                      {...register("businessEmail", { 
+                        required: "An email is required",
+                        pattern: {
+                          value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                          message: "Enter a valid email address"
+                        }
+                      })}
+                      InputProps={{ sx: { borderRadius: 2 } }}
+                    />
+
+                    <Controller name="businessType" control={control} rules={{ required: "Business Type is required" }}
                       render={({ field }) => (
-                        <Box sx={{ 
-                          border: '2px dashed #ccc', 
-                          borderRadius: 2, 
-                          p: 3, 
-                          textAlign: 'center',
-                          height: '100%',
-                          display: 'flex',
-                          flexDirection: 'column',
-                          justifyContent: 'center',
-                          alignItems: 'center',
-                          transition: 'all 0.3s',
-                          '&:hover': { borderColor: '#2196F3' }
-                        }}>
-                          {!logoPreview ? (
-                            <>
-                              <Typography variant="body1" gutterBottom>Logo Upload</Typography>
-                              <Button 
-                                variant="outlined" 
-                                component="label"
-                                sx={{ borderRadius: 2, mt: 1 }}
-                              >
-                                Choose File
-                                <input type="file" hidden accept="image/*" 
-                                  onChange={(e) => {
-                                    const file = e.target.files?.[0] || null;
-                                    if (file) {
-                                      const reader = new FileReader();
-                                      reader.onloadend = () => { setLogoPreview(reader.result as string) }
-                                      reader.readAsDataURL(file);
-                                    } else {
-                                      setLogoPreview(null);
-                                    }
-                                    field.onChange(e.target.files);
-                                  }}
-                                />
-                              </Button>
-                              <Typography variant="caption" color="text.secondary" sx={{ mt: 1 }}>
-                                Recommended: PNG or SVG with transparent background
-                              </Typography>
-                            </>
-                          ) : (
-                            <Box sx={{ position: 'relative', width: '100%', height: '100%', minHeight: 150 }}>
-                              <img 
-                                src={logoPreview} 
-                                alt="Logo Preview" 
-                                style={{ 
-                                  width: '100%', 
-                                  height: '100%', 
-                                  objectFit: "contain", 
-                                  maxHeight: 150 
-                                }} 
-                              />
-                              <Button 
-                                size="small" 
-                                color="error" 
-                                sx={{ position: 'absolute', top: 0, right: 0 }}
-                                onClick={() => {
-                                  setLogoPreview(null);
-                                  field.onChange(null);
-                                }}
-                              >
-                                Remove
-                              </Button>
-                            </Box>
-                          )}
-                        </Box>
+                        <FormControl fullWidth error={!!errors.businessType}>
+                          <InputLabel required>Business Type</InputLabel>
+                          <Select {...field} label="Business Type" sx={{ borderRadius: 2 }}>
+                            <MenuItem value="Apparel">Clothing Brand/Apparel</MenuItem>
+                            <MenuItem value="CreativePortfolio">Creative Portfolio/Showcase</MenuItem>
+                            <MenuItem value="AppointmentBased">Booking/Appointment Based</MenuItem>
+                            <MenuItem value="InformationalSite">Informational Site</MenuItem>
+                            <MenuItem value="CustomIdea">Custom Idea/Other</MenuItem>
+                          </Select>
+                        </FormControl>
                       )}
                     />
-                  </Box>
-                  
-                  <Box>
-                    <Controller name="designUpload" control={control} defaultValue={undefined}
-                      render={({ field }) => (
-                        <Box sx={{ 
-                          border: '2px dashed #ccc', 
-                          borderRadius: 2, 
-                          p: 3, 
-                          textAlign: 'center',
-                          height: '100%',
-                          display: 'flex',
-                          flexDirection: 'column',
-                          justifyContent: 'center',
-                          alignItems: 'center',
-                          transition: 'all 0.3s',
-                          '&:hover': { borderColor: '#2196F3' }
-                        }}>
-                          {!sketchPreview ? (
-                            <>
-                              <Typography variant="body1" gutterBottom>Design/Sketch Upload</Typography>
-                              <Button 
-                                variant="outlined" 
-                                component="label"
-                                sx={{ borderRadius: 2, mt: 1 }}
-                              >
-                                Choose File
-                                <input type="file" hidden accept="image/*"
-                                  onChange={(e) => {
-                                    const file = e.target.files?.[0] || null;
-                                    if (file) {
-                                      const reader = new FileReader();
-                                      reader.onloadend = () => { setSketchPreview(reader.result as string ) }
-                                      reader.readAsDataURL(file);
-                                    } else {
-                                      setSketchPreview(null);
-                                    }
-                                    field.onChange(e.target.files);
-                                  }}
-                                />
-                              </Button>
-                              <Typography variant="caption" color="text.secondary" sx={{ mt: 1 }}>
-                                Upload any design mockups or sketches you have
-                              </Typography>
-                            </>
-                          ) : (
-                            <Box sx={{ position: 'relative', width: '100%', height: '100%', minHeight: 150 }}>
-                              <img 
-                                src={sketchPreview} 
-                                alt="Sketch Preview" 
-                                style={{ 
-                                  width: '100%', 
-                                  height: '100%', 
-                                  objectFit: "contain", 
-                                  maxHeight: 150 
-                                }} 
-                              />
-                              <Button 
-                                size="small" 
-                                color="error" 
-                                sx={{ position: 'absolute', top: 0, right: 0 }}
-                                onClick={() => {
-                                  setSketchPreview(null);
-                                  field.onChange(null);
-                                }}
-                              >
-                                Remove
-                              </Button>
-                            </Box>
-                          )}
-                        </Box>
-                      )}
-                    />
-                  </Box>
-                </Box>
-                
-                <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}>
-                  <Button onClick={handleBack} sx={{ borderRadius: 2 }}>
-                    Back
-                  </Button>
-                  <Button 
-                    variant="contained" 
-                    onClick={handleNext}
-                    sx={{ 
-                      borderRadius: 2,
-                      background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
-                      boxShadow: '0 3px 5px 2px rgba(33, 203, 243, .3)',
-                    }}
-                  >
-                    Next
-                  </Button>
-                </Box>
-              </Stack>
-            )}
-            
-            {activeStep === 2 && (
-              <Stack spacing={3}>
-                <Typography variant="h6" gutterBottom>Project Specifications</Typography>
-                
-                <TextField 
-                  label="Color Scheme" 
-                  placeholder="e.g., Blue and white, Earth tones, etc."
-                  fullWidth 
-                  variant="outlined"
-                  InputProps={{ sx: { borderRadius: 2 } }}
-                  {...register("colorScheme")} 
-                />
-
-                <Controller name="pageRange" control={control}
-                  render={({ field }) => (
-                    <FormControl fullWidth error={!!errors.pageRange}>
-                      <InputLabel>Page Range</InputLabel>
-                      <Select {...field} label="Page Range" sx={{ borderRadius: 2 }}>
-                        <MenuItem value="OneToThree">1-3 Pages</MenuItem>
-                        <MenuItem value="FourToSix">4-6 Pages</MenuItem>
-                        <MenuItem value="SevenPlus">7+ Pages</MenuItem>
-                      </Select>
-                    </FormControl>
-                  )}
-                />
-
-                <TextField 
-                  label="Features" 
-                  placeholder="Describe any specific features you'd like (e.g., contact form, image gallery, blog, etc.)"
-                  multiline 
-                  rows={4} 
-                  fullWidth 
-                  variant="outlined"
-                  InputProps={{ sx: { borderRadius: 2 } }}
-                  {...register("features")} 
-                />
-                
-                <Box sx={{ mt: 2 }}>
-                  <Typography variant="subtitle2" gutterBottom>Common Features:</Typography>
-                  <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap sx={{ mb: 2 }}>
-                    <Chip label="Contact Form" variant="outlined" size="small" />
-                    <Chip label="Image Gallery" variant="outlined" size="small" />
-                    <Chip label="Informational Site" variant="outlined" size="small" />
-                    <Chip label="Apparel" variant="outlined" size="small" />
-                    <Chip label="Social Media Integration" variant="outlined" size="small" />
+                    
+                    <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2 }}>
+                      <Button 
+                        variant="contained" 
+                        onClick={handleNext}
+                        sx={{ 
+                          borderRadius: 2,
+                          background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
+                          boxShadow: '0 3px 5px 2px rgba(33, 203, 243, .3)',
+                        }}
+                      >
+                        Next
+                      </Button>
+                    </Box>
                   </Stack>
-                </Box>
+                )}
+              
+                {activeStep === 1 && (
+                  <Stack spacing={3}>
+                    <Typography variant="h6" gutterBottom>Upload Your Brand Assets</Typography>
+                    
+                    <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' }, gap: 3 }}>
+                      <Box>
+                        <Controller name="logoUpload" control={control} defaultValue={undefined} 
+                          render={({ field }) => (
+                            <Box sx={{ 
+                              border: '2px dashed #ccc', 
+                              borderRadius: 2, 
+                              p: 3, 
+                              textAlign: 'center',
+                              height: '100%',
+                              display: 'flex',
+                              flexDirection: 'column',
+                              justifyContent: 'center',
+                              alignItems: 'center',
+                              transition: 'all 0.3s',
+                              '&:hover': { borderColor: '#2196F3' }
+                            }}>
+                              {!logoPreview ? (
+                                <>
+                                  <Typography variant="body1" gutterBottom>Logo Upload</Typography>
+                                  <Button 
+                                    variant="outlined" 
+                                    component="label"
+                                    sx={{ borderRadius: 2, mt: 1 }}
+                                  >
+                                    Choose File
+                                    <input type="file" hidden accept="image/*" 
+                                      onChange={(e) => {
+                                        const file = e.target.files?.[0] || null;
+                                        if (file) {
+                                          const reader = new FileReader();
+                                          reader.onloadend = () => { setLogoPreview(reader.result as string) }
+                                          reader.readAsDataURL(file);
+                                        } else {
+                                          setLogoPreview(null);
+                                        }
+                                        field.onChange(e.target.files);
+                                      }}
+                                    />
+                                  </Button>
+                                  <Typography variant="caption" color="text.secondary" sx={{ mt: 1 }}>
+                                    Recommended: PNG or SVG with transparent background
+                                  </Typography>
+                                </>
+                              ) : (
+                                <Box sx={{ position: 'relative', width: '100%', height: '100%', minHeight: 150 }}>
+                                  <img 
+                                    src={logoPreview} 
+                                    alt="Logo Preview" 
+                                    style={{ 
+                                      width: '100%', 
+                                      height: '100%', 
+                                      objectFit: "contain", 
+                                      maxHeight: 150 
+                                    }} 
+                                  />
+                                  <Button 
+                                    size="small" 
+                                    color="error" 
+                                    sx={{ position: 'absolute', top: 0, right: 0 }}
+                                    onClick={() => {
+                                      setLogoPreview(null);
+                                      field.onChange(null);
+                                    }}
+                                  >
+                                    Remove
+                                  </Button>
+                                </Box>
+                              )}
+                            </Box>
+                          )}
+                        />
+                      </Box>
+                      
+                      <Box>
+                        <Controller name="designUpload" control={control} defaultValue={undefined}
+                          render={({ field }) => (
+                            <Box sx={{ 
+                              border: '2px dashed #ccc', 
+                              borderRadius: 2, 
+                              p: 3, 
+                              textAlign: 'center',
+                              height: '100%',
+                              display: 'flex',
+                              flexDirection: 'column',
+                              justifyContent: 'center',
+                              alignItems: 'center',
+                              transition: 'all 0.3s',
+                              '&:hover': { borderColor: '#2196F3' }
+                            }}>
+                              {!sketchPreview ? (
+                                <>
+                                  <Typography variant="body1" gutterBottom>Design/Sketch Upload</Typography>
+                                  <Button 
+                                    variant="outlined" 
+                                    component="label"
+                                    sx={{ borderRadius: 2, mt: 1 }}
+                                  >
+                                    Choose File
+                                    <input type="file" hidden accept="image/*"
+                                      onChange={(e) => {
+                                        const file = e.target.files?.[0] || null;
+                                        if (file) {
+                                          const reader = new FileReader();
+                                          reader.onloadend = () => { setSketchPreview(reader.result as string ) }
+                                          reader.readAsDataURL(file);
+                                        } else {
+                                          setSketchPreview(null);
+                                        }
+                                        field.onChange(e.target.files);
+                                      }}
+                                    />
+                                  </Button>
+                                  <Typography variant="caption" color="text.secondary" sx={{ mt: 1 }}>
+                                    Upload any design mockups or sketches you have
+                                  </Typography>
+                                </>
+                              ) : (
+                                <Box sx={{ position: 'relative', width: '100%', height: '100%', minHeight: 150 }}>
+                                  <img 
+                                    src={sketchPreview} 
+                                    alt="Sketch Preview" 
+                                    style={{ 
+                                      width: '100%', 
+                                      height: '100%', 
+                                      objectFit: "contain", 
+                                      maxHeight: 150 
+                                    }} 
+                                  />
+                                  <Button 
+                                    size="small" 
+                                    color="error" 
+                                    sx={{ position: 'absolute', top: 0, right: 0 }}
+                                    onClick={() => {
+                                      setSketchPreview(null);
+                                      field.onChange(null);
+                                    }}
+                                  >
+                                    Remove
+                                  </Button>
+                                </Box>
+                              )}
+                            </Box>
+                          )}
+                        />
+                      </Box>
+                    </Box>
+                    
+                    <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}>
+                      <Button onClick={handleBack} sx={{ borderRadius: 2 }}>
+                        Back
+                      </Button>
+                      <Button 
+                        variant="contained" 
+                        onClick={handleNext}
+                        sx={{ 
+                          borderRadius: 2,
+                          background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
+                          boxShadow: '0 3px 5px 2px rgba(33, 203, 243, .3)',
+                        }}
+                      >
+                        Next
+                      </Button>
+                    </Box>
+                  </Stack>
+                )}
+              
+                {activeStep === 2 && (
+                  <Stack spacing={3}>
+                    <Typography variant="h6" gutterBottom>Project Specifications</Typography>
+                    
+                    <TextField 
+                      label="Color Scheme" 
+                      placeholder="e.g., Blue and white, Earth tones, etc."
+                      fullWidth 
+                      variant="outlined"
+                      InputProps={{ sx: { borderRadius: 2 } }}
+                      {...register("colorScheme")} 
+                    />
 
-                <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}>
-                  <Button onClick={handleBack} sx={{ borderRadius: 2 }}>
-                    Back
-                  </Button>
-                  <Button 
-                    type="submit" 
-                    variant="contained" 
-                    color="primary"
-                    sx={{ 
-                      borderRadius: 50,
-                      px: 4,
-                      py: 1.2,
-                      background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
-                      boxShadow: '0 4px 10px rgba(33, 150, 243, 0.3)',
-                      '&:hover': {
-                        boxShadow: '0 6px 14px rgba(33, 150, 243, 0.4)',
-                        transform: 'translateY(-2px)'
-                      },
-                      transition: 'all 0.3s ease'
-                    }}
-                  >
-                    Submit Project Details
-                  </Button>
-                </Box>
-              </Stack>
-            )}
+                    <Controller name="pageRange" control={control}
+                      render={({ field }) => (
+                        <FormControl fullWidth error={!!errors.pageRange}>
+                          <InputLabel>Page Range</InputLabel>
+                          <Select {...field} label="Page Range" sx={{ borderRadius: 2 }}>
+                            <MenuItem value="OneToThree">1-3 Pages</MenuItem>
+                            <MenuItem value="FourToSix">4-6 Pages</MenuItem>
+                            <MenuItem value="SevenPlus">7+ Pages</MenuItem>
+                          </Select>
+                        </FormControl>
+                      )}
+                    />
+
+                    <TextField 
+                      label="Features" 
+                      placeholder="Describe any specific features you'd like (e.g., contact form, image gallery, blog, etc.)"
+                      multiline 
+                      rows={4} 
+                      fullWidth 
+                      variant="outlined"
+                      InputProps={{ sx: { borderRadius: 2 } }}
+                      {...register("features")} 
+                    />
+                    
+                    <Box sx={{ mt: 2 }}>
+                      <Typography variant="subtitle2" gutterBottom>Common Features:</Typography>
+                      <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap sx={{ mb: 2 }}>
+                        <Chip label="Contact Form" variant="outlined" size="small" />
+                        <Chip label="Image Gallery" variant="outlined" size="small" />
+                        <Chip label="Informational Site" variant="outlined" size="small" />
+                        <Chip label="Apparel" variant="outlined" size="small" />
+                        <Chip label="Social Media Integration" variant="outlined" size="small" />
+                      </Stack>
+                    </Box>
+
+                    <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}>
+                      <Button onClick={handleBack} sx={{ borderRadius: 2 }}>
+                        Back
+                      </Button>
+                      <Button 
+                        type="submit" 
+                        variant="contained" 
+                        color="primary"
+                        sx={{ 
+                          borderRadius: 50,
+                          px: 4,
+                          py: 1.2,
+                          background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
+                          boxShadow: '0 4px 10px rgba(33, 150, 243, 0.3)',
+                          '&:hover': {
+                            boxShadow: '0 6px 14px rgba(33, 150, 243, 0.4)',
+                            transform: 'translateY(-2px)'
+                          },
+                          transition: 'all 0.3s ease'
+                        }}
+                      >
+                        Submit Project Details
+                      </Button>
+                    </Box>
+                  </Stack>
+                )}
               </form>
             </Box>
           </Paper>
