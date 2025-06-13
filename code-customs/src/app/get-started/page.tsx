@@ -232,7 +232,7 @@ export default function GetStartedPage() {
                     Thank you for your submission!
                   </Typography>
                   <Typography variant="body1" sx={{ mb: 4, maxWidth: '600px', fontSize: '1.1rem' }}>
-                    We've received your project details and will get back to you as soon as possible.
+                    We&apos;ve received your project details and will get back to you as soon as possible.
                     Our team typically responds within 24-48 business hours.
                   </Typography>
                   <Button 
