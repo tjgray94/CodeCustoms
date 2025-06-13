@@ -113,10 +113,11 @@ export default function AboutPage() {
             </Typography>
             
             <Typography variant="body1" sx={{ mt: 3, fontSize: "1.1rem", lineHeight: 1.8 }}>
-              {`I wanted to start a business but could never think of what. Then I asked myself, "What do I 
-              absolutely love to do besides playing COD all day?". The answer to that is "making websites" -  
-              which, I'm sure, isn't a common response for someone with my background. As weird as it sounds, 
-              I actually enjoy building websites.`} 
+              {`I've always wanted to start a business but struggled to decide on the right idea. Eventually,
+               I asked myself, "What do I genuinely enjoy doing besides playing Call of Duty all day?". The 
+               answer was clear: building websites. It may not be the most expected response given my 
+               background, but the truth is—I genuinely enjoy the process of creating and developing websites.`
+              } 
             </Typography>
           </Paper>
           
@@ -182,7 +183,8 @@ export default function AboutPage() {
                 The Problem
               </Typography>
               <Typography variant="body1" sx={{ fontSize: "1.1rem", lineHeight: 1.8, color: 'rgba(255,255,255,0.9)' }}>
-                While doing some research to see what other companies offer, I noticed a trend: most of them rely heavily on pre-built templates with strict design limitations. That&apos;s where I saw an opportunity.
+                While doing some research to see what other companies offer, I noticed a trend: most of them rely 
+                heavily on pre-built templates with strict design limitations. That&apos;s where I saw an opportunity.
               </Typography>
             </Paper>
             
@@ -242,7 +244,8 @@ export default function AboutPage() {
                 Our Solution
               </Typography>
               <Typography variant="body1" sx={{ fontSize: "1.1rem", lineHeight: 1.8 }}>
-                Instead of working with cookie-cutter designs, CodeCustoms builds websites from scratch - with code - tailored to exactly what you envision. You bring the ideas, and we bring them to life.
+                Instead of working with cookie-cutter designs, CodeCustoms builds websites from scratch - with code - 
+                tailored to exactly what you envision. You bring the ideas, and we bring them to life.
               </Typography>
             </Paper>
             
