@@ -2,17 +2,18 @@
 
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-import { Box, Typography, Container, TextField, Button, Stack, MenuItem, InputLabel, Select, FormControl, Paper, Stepper, Step, StepLabel, Chip } from "@mui/material";
+import { Box, Typography, Container, TextField, Button, Stack, MenuItem, InputLabel, Select, FormControl, Paper, Stepper, 
+  Step, StepLabel, Chip } from "@mui/material";
 import { useForm, Controller } from "react-hook-form";
 import axios from "axios";
-import { useState, useRef } from "react";
+import { useState } from "react";
 
 type FormInputs = {
   businessName: string;
   businessEmail: string;
   businessType: string;
+  pageRange: string;
   colorScheme?: string;
-  pageRange?: string;
   features?: string;
   logoUpload?: FileList;
   designUpload?: FileList;
@@ -22,10 +23,11 @@ export default function GetStartedPage() {
   const [logoPreview, setLogoPreview] = useState<string | null>(null);
   const [sketchPreview, setSketchPreview] = useState<string | null>(null);
   const [activeStep, setActiveStep] = useState(0);
-  const businessNameRef = useRef<string>("");
 
-  const { register, handleSubmit, reset, control, formState: { errors }, getValues } = useForm<FormInputs>({
-    defaultValues: { businessType: "", pageRange: "" }
+
+  const { register, handleSubmit, reset, control, formState: { errors }, getValues, trigger } = useForm<FormInputs>({
+    defaultValues: { businessType: "", pageRange: "" },
+    mode: "onChange"
   });
   
   const onSubmit = async (data: FormInputs) => {
@@ -68,29 +70,26 @@ export default function GetStartedPage() {
   
   const handleNext = () => {
     if (activeStep === 0) {
-      const businessNameValue = businessNameRef.current;
-      const { businessEmail, businessType } = getValues();
-
-      if (!businessNameValue || businessNameValue.trim() === "") {
-        alert("Please enter a business name before proceeding");
-        return;
+      const { businessName, businessEmail, businessType } = getValues();
+      let isValid = true;
+      
+      if (!businessName || businessName.trim() === "") {
+        isValid = false;
       }
-
-      if (!businessEmail || businessEmail.trim() === "") {
-        alert("Please enter a business email before proceeding");
-        return;
+      
+      if (!businessEmail || businessEmail.trim() === "" || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(businessEmail)) {
+        isValid = false;
       }
-
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(businessEmail)) {
-      alert("Please enter a valid email address");
-      return;
+      
+      if (!businessType || businessType === "") {
+        isValid = false;
       }
-
-      if (!businessType || businessType.trim() === "") {
-        alert("Please select a business type before proceeding");
+      
+      if (!isValid) {
         return;
       }
     }
+
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
@@ -225,8 +224,8 @@ export default function GetStartedPage() {
                       error={!!errors.businessName} 
                       helperText={errors.businessName?.message as string || ''}
                       {...register("businessName", { 
-                        required: "A Business Name is required",
-                        onChange: (e) => { businessNameRef.current = e.target.value; }
+                        required: "Business Name is required",
+                        validate: value => value.trim() !== "" || "Business Name cannot be empty"
                       })}
                       InputProps={{ sx: { borderRadius: 2 } }}
                     />
@@ -240,16 +239,21 @@ export default function GetStartedPage() {
                       error={!!errors.businessEmail} 
                       helperText={errors.businessEmail?.message as string || ''}
                       {...register("businessEmail", { 
-                        required: "An email is required",
+                        required: "Business Email is required",
+                        validate: value => value.trim() !== "" || "Business Email cannot be empty",
                         pattern: {
                           value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                          message: "Enter a valid email address"
+                          message: "Please enter a valid email address"
                         }
                       })}
                       InputProps={{ sx: { borderRadius: 2 } }}
                     />
 
-                    <Controller name="businessType" control={control} rules={{ required: "Business Type is required" }}
+                    <Controller name="businessType" control={control} 
+                      rules={{ 
+                        required: "Business Type is required",
+                        validate: value => value !== "" || "Please select a business type"
+                      }}
                       render={({ field }) => (
                         <FormControl fullWidth error={!!errors.businessType}>
                           <InputLabel required>Business Type</InputLabel>
@@ -260,6 +264,9 @@ export default function GetStartedPage() {
                             <MenuItem value="InformationalSite">Informational Site</MenuItem>
                             <MenuItem value="CustomIdea">Custom Idea/Other</MenuItem>
                           </Select>
+                          {errors.businessType && <Typography color="error" variant="caption" sx={{ mt: 1, ml: 2 }}>
+                            {errors.businessType.message}
+                          </Typography>}
                         </FormControl>
                       )}
                     />
@@ -267,7 +274,12 @@ export default function GetStartedPage() {
                     <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2 }}>
                       <Button 
                         variant="contained" 
-                        onClick={handleNext}
+                        onClick={async () => {
+                          const isValid = await trigger(["businessName", "businessEmail", "businessType"]);
+                          if (isValid) {
+                            handleNext();
+                          }
+                        }}
                         sx={{ 
                           borderRadius: 2,
                           background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
@@ -455,6 +467,26 @@ export default function GetStartedPage() {
                   <Stack spacing={3}>
                     <Typography variant="h6" gutterBottom>Project Specifications</Typography>
                     
+                    <Controller name="pageRange" control={control} defaultValue=""
+                      rules={{ 
+                        required: "Page Range is required",
+                        validate: value => value !== "" || "Please select a page range"
+                      }}
+                      render={({ field }) => (
+                        <FormControl fullWidth error={!!errors.pageRange}>
+                          <InputLabel required>Page Range</InputLabel>
+                          <Select {...field} label="Page Range" sx={{ borderRadius: 2 }}>
+                            <MenuItem value="OneToThree">1-3 Pages</MenuItem>
+                            <MenuItem value="FourToSix">4-6 Pages</MenuItem>
+                            <MenuItem value="SevenPlus">7+ Pages</MenuItem>
+                          </Select>
+                          {errors.pageRange && <Typography color="error" variant="caption" sx={{ mt: 1, ml: 2 }}>
+                            {errors.pageRange.message}
+                          </Typography>}
+                        </FormControl>
+                      )}
+                    />
+
                     <TextField 
                       label="Color Scheme" 
                       placeholder="e.g., Blue and white, Earth tones, etc."
@@ -462,19 +494,6 @@ export default function GetStartedPage() {
                       variant="outlined"
                       InputProps={{ sx: { borderRadius: 2 } }}
                       {...register("colorScheme")} 
-                    />
-
-                    <Controller name="pageRange" control={control}
-                      render={({ field }) => (
-                        <FormControl fullWidth error={!!errors.pageRange}>
-                          <InputLabel>Page Range</InputLabel>
-                          <Select {...field} label="Page Range" sx={{ borderRadius: 2 }}>
-                            <MenuItem value="OneToThree">1-3 Pages</MenuItem>
-                            <MenuItem value="FourToSix">4-6 Pages</MenuItem>
-                            <MenuItem value="SevenPlus">7+ Pages</MenuItem>
-                          </Select>
-                        </FormControl>
-                      )}
                     />
 
                     <TextField 
