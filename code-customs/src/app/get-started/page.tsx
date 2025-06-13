@@ -23,6 +23,7 @@ export default function GetStartedPage() {
   const [logoPreview, setLogoPreview] = useState<string | null>(null);
   const [sketchPreview, setSketchPreview] = useState<string | null>(null);
   const [activeStep, setActiveStep] = useState(0);
+  const [submitted, setSubmitted] = useState(false);
 
 
   const { register, handleSubmit, reset, control, formState: { errors }, getValues, trigger } = useForm<FormInputs>({
@@ -54,7 +55,7 @@ export default function GetStartedPage() {
       })
 
       if (response.status === 201) {
-        alert("Details submitted successfully!");
+        setSubmitted(true);
         reset();
         setLogoPreview(null);
         setSketchPreview(null);
@@ -213,7 +214,48 @@ export default function GetStartedPage() {
             }} />
             
             <Box sx={{ position: 'relative', zIndex: 1 }}>
-              <form onSubmit={handleSubmit(onSubmit)}>
+              {submitted ? (
+                <Box sx={{ 
+                  textAlign: 'center',
+                  py: 4,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: 2
+                }}>
+                  <Typography 
+                    variant="h4" 
+                    color="primary" 
+                    gutterBottom
+                    sx={{ fontWeight: 600 }}
+                  >
+                    Thank you for your submission!
+                  </Typography>
+                  <Typography variant="body1" sx={{ mb: 4, maxWidth: '600px', fontSize: '1.1rem' }}>
+                    We've received your project details and will get back to you as soon as possible.
+                    Our team typically responds within 24-48 business hours.
+                  </Typography>
+                  <Button 
+                    variant="contained" 
+                    href="/"
+                    sx={{ 
+                      borderRadius: 50,
+                      px: 4,
+                      py: 1.2,
+                      background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
+                      boxShadow: '0 4px 10px rgba(33, 150, 243, 0.3)',
+                      '&:hover': {
+                        boxShadow: '0 6px 14px rgba(33, 150, 243, 0.4)',
+                        transform: 'translateY(-2px)'
+                      },
+                      transition: 'all 0.3s ease'
+                    }}
+                  >
+                    Return to Home
+                  </Button>
+                </Box>
+              ) : (
+                <form onSubmit={handleSubmit(onSubmit)}>
                 {activeStep === 0 && (
                   <Stack spacing={3}>
                     <TextField 
@@ -545,6 +587,7 @@ export default function GetStartedPage() {
                   </Stack>
                 )}
               </form>
+              )}
             </Box>
           </Paper>
         </Box>
