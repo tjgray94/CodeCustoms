@@ -84,11 +84,10 @@ export default function SampleProjects() {
           lineHeight: 1.7
         }}
       >
-        I&apos;ve dedicated my IT journey so far to growing as a developer by building personal projects using
-        a variety of languages and frameworks. While the right opportunity hasn&apos;t arrived yet, I&apos;m
-        undeterred -- I continue to learn, experiment, and write code everyday. Whether that opportunity comes 
-        tomorrow or years from now, I&apos;ll be ready (fingers intact, hopefully). Here are a few of the 
-        projects I&apos;ve worked on along the way:
+        I&apos;ve grown as a developer by building real-world projects with a variety of 
+        tools and technologies. While I&apos;m still looking for the right opportunity,
+        I continue to push myself every day by learning, experimenting, and writing code.
+        Below are some of the projects that highlight my experience and passion for development:
       </Typography>
       
       {/* Enhanced Portfolio Grid */}
