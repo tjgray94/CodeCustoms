@@ -6,7 +6,7 @@ export default function InfoSection() {
   return (
     <Box sx={{ 
       position: 'relative',
-      mb: 12,
+      mb: 6,
       mt: { xs: 4, md: -8 },
       zIndex: 1
     }}>

@@ -8,7 +8,7 @@ export default function CallToActionSection() {
       sx={{ 
         position: 'relative',
         overflow: 'hidden',
-        py: 10,
+        py: 6,
         mt: 4
       }}
     >

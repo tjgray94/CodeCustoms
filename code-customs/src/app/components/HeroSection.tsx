@@ -10,8 +10,8 @@ export default function HeroSection() {
         position: 'relative',
         overflow: 'hidden',
         color: 'white',
-        py: { xs: 10, md: 12 },
-        mb: 8
+        py: { md: 6 },
+        mb: 12
       }}
     >
       {/* Background elements */}

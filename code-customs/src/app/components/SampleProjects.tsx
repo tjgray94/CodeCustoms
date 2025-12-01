@@ -10,8 +10,8 @@ export default function SampleProjects() {
   return (
     <Box sx={{ 
       position: 'relative',
-      mt: 12,
-      mb: 8,
+      mt: 6,
+      mb: 6,
       overflow: 'hidden'
     }}>
       {/* Background decorative elements */}

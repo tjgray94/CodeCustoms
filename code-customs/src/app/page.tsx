@@ -18,7 +18,7 @@ export default function Home() {
       {/* Asymmetric Hero Section */}
       <HeroSection />
 
-      <Container maxWidth="lg" sx={{ mb: 10, flex: 1 }}>
+      <Container maxWidth="lg" sx={{ flex: 1 }}>
         {/* Asymmetric info section */}
         <InfoSection />
         
