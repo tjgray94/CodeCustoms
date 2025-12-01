@@ -32,11 +32,10 @@ export default function Home() {
         <SampleProjects />
       </Container>
 
-      <Footer />
-
       {/* Asymmetric Call to Action Section */}
       <CallToActionSection />
 
+      <Footer />
     </Box>
   );
 }
