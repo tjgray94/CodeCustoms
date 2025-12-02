@@ -49,7 +49,7 @@ export default function InfoSection() {
               }
             }}
           >
-            What is CodeCustoms?
+            What is CodeCustoms
           </Typography>
           <Typography variant="body1" sx={{ mt: 3, fontSize: '1.1rem', lineHeight: 1.7 }}>
             CodeCustoms is a service that offers full creative control over your website by building it

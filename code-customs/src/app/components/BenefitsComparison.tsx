@@ -39,7 +39,7 @@ export default function BenefitsComparison() {
           }
         }}
       >
-        Why Choose Custom Development?
+        Why Choose Custom Development
       </Typography>
       
       <Divider />
