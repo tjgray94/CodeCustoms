@@ -10,27 +10,41 @@ export default function BenefitsComparison() {
       sx={{ 
         p: 4, 
         mt: 6,
-        borderRadius: 2
+        borderRadius: 2,
+        background: 'linear-gradient(135deg, #0a1929 0%, #1e3a5f 100%)',
+        color: 'white',
+        transition: 'transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out',
+        '&:hover': {
+          transform: 'translateY(-5px)',
+          boxShadow: '0 20px 40px rgba(0,0,0,0.2)'
+        }
       }}
     >
       <Typography 
         variant="h4" 
-        align="center" 
         gutterBottom
         sx={{ 
-          fontWeight: 600,
-          mb: 3,
-          background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
-          backgroundClip: 'text',
-          textFillColor: 'transparent',
+          fontWeight: 700,
+          color: 'white',
+          pb: 2,
+          position: 'relative',
+          '&::after': {
+            content: '""',
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            width: '60px',
+            height: '4px',
+            background: 'linear-gradient(45deg, #FF9800 30%, #FFC107 90%)',
+          }
         }}
       >
         Why Choose Custom Development?
       </Typography>
       
-      <Divider sx={{ mb: 4 }} />
+      <Divider />
       
-      <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' }, gap: 4 }}>
+      <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' }, gap: 4, mt: 2 }}>
         <Paper 
           elevation={1} 
           sx={{ 

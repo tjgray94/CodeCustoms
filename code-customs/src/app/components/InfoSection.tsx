@@ -20,7 +20,8 @@ export default function InfoSection() {
           sx={{ 
             p: 5, 
             borderRadius: 3,
-            background: 'white',
+            background: 'linear-gradient(135deg, #0a1929 0%, #1e3a5f 100%)',
+            color: 'white',
             position: 'relative',
             transition: 'transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out',
             '&:hover': {
@@ -34,7 +35,7 @@ export default function InfoSection() {
             gutterBottom
             sx={{ 
               fontWeight: 700,
-              color: '#1976d2',
+              color: 'white',
               pb: 2,
               position: 'relative',
               '&::after': {
@@ -44,7 +45,7 @@ export default function InfoSection() {
                 left: 0,
                 width: '60px',
                 height: '4px',
-                background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
+                background: 'linear-gradient(45deg, #FF9800 30%, #FFC107 90%)',
               }
             }}
           >

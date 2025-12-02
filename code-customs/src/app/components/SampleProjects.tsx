@@ -1,6 +1,6 @@
 'use client';
 
-import { Typography, Box } from '@mui/material';
+import { Typography, Box, Paper } from '@mui/material';
 import React from 'react';
 import BankAppDemo from './BankAppDemo';
 import ERSDemo from './ERSDemo';
@@ -8,63 +8,39 @@ import GameStoreAppDemo from './GameStoreAppDemo';
 
 export default function SampleProjects() {
   return (
-    <Box sx={{ 
-      position: 'relative',
-      mt: 6,
-      mb: 6,
-      overflow: 'hidden'
-    }}>
-      {/* Background decorative elements */}
-      <Box sx={{ 
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%',
-        bgcolor: '#f8f9fa',
-        zIndex: -2
-      }} />
-      
-      <Box sx={{ 
-        position: 'absolute',
-        top: -100,
-        left: -100,
-        width: 300,
-        height: 300,
-        borderRadius: '50%',
-        background: 'rgba(33, 150, 243, 0.05)',
-        zIndex: -1
-      }} />
-      
-      <Box sx={{ 
-        position: 'absolute',
-        bottom: -150,
-        right: -150,
-        width: 400,
-        height: 400,
-        borderRadius: '50%',
-        background: 'rgba(255, 152, 0, 0.05)',
-        zIndex: -1
-      }} />
-      
+    <Paper 
+      elevation={3} 
+      sx={{ 
+        p: 4, 
+        mt: 6,
+        borderRadius: 2,
+        background: 'linear-gradient(135deg, #0a1929 0%, #1e3a5f 100%)',
+        color: 'white',
+        transition: 'transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out',
+        '&:hover': {
+          transform: 'translateY(-5px)',
+          boxShadow: '0 20px 40px rgba(0,0,0,0.2)'
+        }
+      }}
+    >
       <Typography 
-        variant="h3" 
+        variant="h4" 
         align="left" 
         gutterBottom
         sx={{ 
-          fontWeight: 800,
-          mb: 1,
-          ml: { xs: 2, md: 6 },
+          fontWeight: 700,
+          color: 'white',
+          pb: 2,
           position: 'relative',
           display: 'inline-block',
           '&::after': {
             content: '""',
             position: 'absolute',
-            bottom: -10,
+            bottom: 0,
             left: 0,
-            width: '80px',
+            width: '60px',
             height: '4px',
-            background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
+            background: 'linear-gradient(45deg, #FF9800 30%, #FFC107 90%)',
           }
         }}
       >
@@ -75,11 +51,8 @@ export default function SampleProjects() {
         variant="body1" 
         gutterBottom 
         sx={{ 
-          mb: 6, 
-          ml: { xs: 2, md: 6 },
-          mr: { xs: 2, md: 6 },
-          mt: 3,
-          maxWidth: '800px',
+          mb: 4, 
+          mt: 2,
           fontSize: '1.1rem',
           lineHeight: 1.7
         }}
@@ -108,6 +81,6 @@ export default function SampleProjects() {
           
         </Box>
       </Box>
-    </Box>
+    </Paper>
   )
 }

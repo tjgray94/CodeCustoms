@@ -15,25 +15,39 @@ export default function DevelopmentProcess() {
       sx={{ 
         p: 4, 
         mt: 6,
-        borderRadius: 2
+        borderRadius: 2,
+        background: 'linear-gradient(135deg, #0a1929 0%, #1e3a5f 100%)',
+        color: 'white',
+        transition: 'transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out',
+        '&:hover': {
+          transform: 'translateY(-5px)',
+          boxShadow: '0 20px 40px rgba(0,0,0,0.2)'
+        }
       }}
     >
       <Typography 
-        variant="h4" 
-        align="center" 
+        variant="h4"
         gutterBottom
-        sx={{ 
-          fontWeight: 600,
-          mb: 3,
-          background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
-          backgroundClip: 'text',
-          textFillColor: 'transparent',
+        sx={{
+          fontWeight: 700,
+          color: 'white',
+          pb: 2,
+          position: 'relative',
+          '&::after': {
+            content: '""',
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            width: '60px',
+            height: '4px',
+            background: 'linear-gradient(45deg, #FF9800 30%, #FFC107 90%)',
+          }
         }}
       >
         Our Development Process
       </Typography>
           
-      <Divider sx={{ mb: 4 }} />
+      <Divider />
           
       <Box sx={{ maxWidth: '800px', mx: 'auto', py: 2 }}>
         <Timeline position="alternate">
@@ -45,7 +59,18 @@ export default function DevelopmentProcess() {
               <TimelineConnector />
             </TimelineSeparator>
             <TimelineContent>
-              <Paper elevation={2} sx={{ p: 3, borderRadius: 2 }}>
+              <Paper 
+                elevation={2}
+                sx={{
+                  p: 3,
+                  borderRadius: 2,
+                  transition: 'transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out',
+                  '&:hover': {
+                    transform: 'translateY(-5px)',
+                    boxShadow: '0 20px 40px rgba(0,0,0,0.1)'
+                  }
+                }}
+              >
                 <Typography variant="h6" component="span" color="primary">
                   Design & Planning
                 </Typography>
@@ -62,7 +87,18 @@ export default function DevelopmentProcess() {
               <TimelineConnector />
             </TimelineSeparator>
             <TimelineContent>
-              <Paper elevation={2} sx={{ p: 3, borderRadius: 2 }}>
+              <Paper 
+                elevation={2} 
+                sx={{
+                  p: 3,
+                  borderRadius: 2,
+                  transition: 'transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out',
+                  '&:hover': {
+                    transform: 'translateY(-5px)',
+                    boxShadow: '0 20px 40px rgba(0,0,0,0.1)'
+                  }
+                }}
+              >
                 <Typography variant="h6" component="span" color="primary">
                   Custom Development
                 </Typography>
@@ -79,7 +115,18 @@ export default function DevelopmentProcess() {
               <TimelineConnector />
             </TimelineSeparator>
             <TimelineContent>
-              <Paper elevation={2} sx={{ p: 3, borderRadius: 2 }}>
+              <Paper
+                elevation={2}
+                sx={{
+                  p: 3,
+                  borderRadius: 2,
+                  transition: 'transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out',
+                  '&:hover': {
+                    transform: 'translateY(-5px)',
+                    boxShadow: '0 20px 40px rgba(0,0,0,0.1)'
+                  }
+                }}
+              >
                 <Typography variant="h6" component="span" color="primary">
                   Testing & Refinement
                 </Typography>
@@ -95,7 +142,18 @@ export default function DevelopmentProcess() {
               </TimelineDot>
             </TimelineSeparator>
             <TimelineContent>
-              <Paper elevation={2} sx={{ p: 3, borderRadius: 2 }}>
+              <Paper
+                elevation={2}
+                sx={{
+                  p: 3,
+                  borderRadius: 2,
+                  transition: 'transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out',
+                  '&:hover': {
+                    transform: 'translateY(-5px)',
+                    boxShadow: '0 20px 40px rgba(0, 0, 0, 0.1)'
+                  }
+                }}
+              >
                 <Typography variant="h6" component="span" color="primary">
                   Launch & Support
                 </Typography>
